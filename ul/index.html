@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Unordered Lists</title>
+		
+		<!-- Google Fonts - Inter -->
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+		rel="stylesheet">
+		
+		<link rel="stylesheet" href="./styles.css" />
+	</head>
+	<body>
+		<header>
+			<h1>Unordered Lists (&lt;ul&gt;)</h1>
+		</header>
+		<section id="description">
+			<h2>Overview</h2>
+			<p>
+				The <code>&lt;ul&gt;</code> element creates an unordered list of items, typically rendered as a bulleted
+				list. It can contain zero or more <code>&lt;li&gt;</code> elements. Unordered lists are used when the
+				order of the elements is not important to the semantic structure of the page. If the order of the
+				elements does matter/affect the structure of the document, an ordered list (<code>&lt;ol&gt;</code>)
+				should be used instead.
+			</p>
+			<p>
+				The permitted attributes are the global attributes. The additional attributes <code>compact</code> and
+				<code>type</code> are now considered obsolete and their functionality can be accomplished via CSS.
+			</p>
+		</section>
+		<section id="uses">
+			<h2>Uses</h2>
+			<p>
+				Unordered lists should be used when the order of the elements does not impact the structure or meaning
+				of a page. Practical applications for unordered lists include menus or link trees.
+			</p>
+		</section>
+		<section id="examples">
+			<h2>Attribute Examples</h2>
+			<article id="globals">
+				<p>
+					The following list demonstrates some of the global attributes, including <code>id</code>,
+					<code>class</code>, <code>contenteditable</code>, and <code>draggable</code>.
+				</p>
+				<ul id="outer-example">
+					<li>List item one</li>
+					<li>List item two</li>
+					<li>
+						Inner nested &lt;ul&gt; - I'm editable!
+						<ul contenteditable class="nested">
+							<li>Nested object one</li>
+							<li>Nested object two</li>
+							<li>Nested object three</li>
+							<li>Nested object four</li>
+						</ul>
+					</li>
+					<li>
+						Inner nested &lt;ul&gt; - I'm draggable!
+						<ul draggable class="nested">
+							<li>Nested object one</li>
+							<li>Nested object two</li>
+							<li>Nested object three</li>
+							<li>Nested object four</li>
+						</ul>
+					</li>
+				</ul>
+			</article>
+			<article id="deprecated">
+				<article id="compact">
+					<p>
+						The following list demonstrates the two deprecated attributes, <code>compact</code> and
+						<code>type</code>.
+					</p>
+					<p>
+						The <code>compact</code> Boolean attribute hints that the list should be rendered in a compact
+						style. To give a similar effect as the <code>compact</code> attribute, the CSS property
+						<code>line-height</code> can be used with a value of 80%.
+					</p>
+					<ul style="line-height: 80%;">
+						<li>List item one</li>
+						<li>List item two</li>
+						<li>List item three</li>
+						<li>List item four</li>
+					</ul>
+				</article>
+				<article>
+					<p>
+						The <code>type</code> attribute sets the bullet style for the list. This has been replaced by
+						the CSS property <code>list-style-type</code>. Some of the options are demonstrated below.
+					</p>
+					<ul style="list-style-type: circle;">
+						list-style-type: circle
+						<li>List item one</li>
+						<li>List item two</li>
+					</ul>
+					<ul style="list-style-type: square;">
+						list-style-type: square
+						<li>List item one</li>
+						<li>List item two</li>
+					</ul>
+					<ul style="list-style-type: georgian;">
+						list-style-type: georgian
+						<li>List item one</li>
+						<li>List item two</li>
+					</ul>
+					<ul style="list-style-type: decimal;">
+						list-style-type: decimal
+						<li>List item one</li>
+						<li>List item two</li>
+					</ul>
+				</article>
+			</article>
+		</section>
+		<section id="css-tricks">
+			<h2>CSS Tricks</h2>
+			<p>
+				The most styling on unordered lists comes from styling the bullets (list item markers). As demonstrated
+				above, this should primarily be done using the CSS propert <code>list-style-type</code>. If you want to
+				use a custom bullet, such as an image, the best bet is using the <code>::before</code> selector on the
+				list items and then setting the <code>background-image</code>. You’d think list-style-image would be the
+				way to go, but it’s extremely limited. For example, you can’t position it or even resize it.
+			</p>
+			misuse/abuse 
+			<ul>
+				<ul>
+					<ul>
+						<ul>
+							sdjfbvpisdfubgpf
+						</ul>
+					</ul>
+				</ul>
+			</ul>
+		</section>
+	</body>
+</html>

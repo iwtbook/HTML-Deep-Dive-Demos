@@ -1,0 +1,138 @@
+a {
+  color: white;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+body {
+  background-color: #ede7e3;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+code {
+  background-color: #bfd0b3;
+  font-size: 1.1em;
+  padding: 0 2px;
+}
+
+h1 {
+  color: #ede7e3;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  font-weight: 600;
+}
+
+h2 {
+  font-weight: unset;
+}
+
+header {
+  background-color: #556f44;
+  margin: 0;
+  padding: 20px 0;
+  text-align: center;
+}
+
+ol {
+  background-color: #ede7e3;
+  border-radius: 5px;
+  padding: 10px 25px;
+  width: fit-content;
+}
+
+p {
+  line-height: 1.5em;
+}
+
+section {
+  background-color: #94b181;
+  border-radius: 5px;
+  margin: 30px 50px;
+  padding: 10px 20px;
+}
+
+.css-example {
+  list-style: none;
+  counter-reset: steps;
+  padding: 0 !important;
+}
+
+.code-example {
+  padding: 0;
+}
+
+.code-example>pre {
+  /* background-color: #bfd0b3; */
+  background-color: #ede7e3;
+  border-radius: 5px;
+  color: #2c2c2c;
+  display: inline-block;
+  padding: 10px;
+}
+
+.interactive-example {
+  background-color: #ede7e3;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 10px;
+}
+
+.outline {
+  list-style: none;
+  counter-reset: count;
+}
+
+.outline li:before {
+  content: counters(count, ".") ". ";
+}
+
+.outline li {
+  counter-increment: count;
+}
+
+#colored-numbers li::before {
+  background: #ff6f00;
+  border-radius: 50%;
+  color: white;
+  content: counter(steps);
+  display: inline-grid;
+  height: 1.2em;
+  line-height: 1.2em;
+  margin-right: 0.5rem;
+  place-items: center;
+  width: 1.2em;
+}
+
+#colored-numbers li {
+  counter-increment: steps;
+}
+
+#colored-numbers ol li::before {
+  background: darkorchid;
+}
+
+#type {
+  display: grid;
+  grid-template-areas:
+    ' p p p p '
+    ' ol1 ol2 ol3 ol4';
+}
+
+@media only screen and (max-width: 850px) {
+  #type {
+    column-gap: 30px;
+    grid-template-areas:
+      'p p'
+      'ol1 ol2'
+      'ol3 ol4';
+  }
+}

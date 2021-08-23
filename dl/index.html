@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Description Lists</title>
+		
+		<!-- Google Fonts - Inter -->
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+		rel="stylesheet">
+		
+		<link rel="stylesheet" href="./styles.css" />
+	</head>
+	<body>
+		<header>
+			<h1>Description Lists (&lt;dl&gt;)</h1>
+		</header>
+		<section id="description">
+			<h2>Overview</h2>
+			<p>
+				The <code>&lt;dl&gt;</code> element creates a description list container. It encloses a list of one or
+				more terms (<code>&lt;dt&gt;</code>) paired with one or more descriptions (<code>&lt;dd&gt;</code>). The
+				values within a group are alternatives; multiple paragraphs forming part of the same value must all be
+				given within the same <code>&lt;dd&gt;</code> element. You can also use block level elements in the
+				definition description, such as the <code>&lt;p&gt;</code> and <code>&lt;ul&gt;</code> elements. You
+				cannot use block level elements inside a definition term.
+			</p>
+			<p>The permitted attributes are the global attributes.</p>
+		</section>
+		<section id="uses">
+			<h2>Uses</h2>
+			<p>
+				Description lists have many different applications when it comes to using semantic markup on your site.
+				Below are some example use cases for description lists.
+			</p>
+			<article id="one-one">
+				<p>
+					The primary application of a descripiton list is for defining terms. This usually results in a one
+					to one relationship between the <code>&lt;dt&gt;</code>s and <code>&lt;dd&gt;</code>s in your
+					markup.
+				</p>
+				<dl id="one-one-dl">
+					<dt><code>&lt;ol&gt;</code></dt>
+					<dd>
+						The <code>&lt;ol&gt;</code> element creates a list of items in which the ordering of the items
+						is important to the structure of the page.
+					</dd>
+					<dt><code>&lt;ul&gt;</code></dt>
+					<dd>
+						The <code>&lt;ul&gt;</code> element creates a list of items in which the ordering of the items
+						is NOT important to the structure of the page.
+					</dd>
+					<dt><code>&lt;dl&gt;</code></dt>
+					<dd>
+						The <code>&lt;dl&gt;</code> element creates a list of groups of one or more terms and one or
+						more descriptions for those terms.
+					</dd>
+				</dl>
+			</article>
+			<article id="one-many">
+				<p>
+					Another application for descripiton lists is for listing metadata that may have more than one value
+					per key. This usually results in a one to many relationship between the <code>&lt;dt&gt;</code>s and
+					<code>&lt;dd&gt;</code>s in your markup.
+				</p>
+				<dl id="one-many-dl">
+					<dt>Authors</dt>
+					<dd>Alice Smith</dd>
+					<dd>Bob Jones</dd>
+					<dd>Chuck Lee</dd>
+					<dt>Publish Date</dt>
+					<dd>January 10th, 2020</dd>
+				</dl>
+				This one to many relationship may also be useful for routing and link management.
+				<dl id="one-many-links">
+					<dt>Need Help?</dt>
+					<dd><a href="http://w3.org">w3 Homepage</a></dd>
+					<dd>
+						<a href="https://html.spec.whatwg.org/multipage/grouping-content.html#the-dl-element"
+							>Read the spec</a
+						>
+					</dd>
+					<dd>
+						<a
+							href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl#:~:text=The%20HTML%20element%20represents,of%20key%2Dvalue%20pairs)."
+							>MDN <code>&lt;dl&gt;</code> documentation</a
+						>
+					</dd>
+				</dl>
+			</article>
+			<article id="many-one">
+				<p>
+					You can also use descripiton lists to define pseudonyms for terms or include different translations
+					for a single term. This usually results in a many to one relationship between the
+					<code>&lt;dt&gt;</code>s and <code>&lt;dd&gt;</code>s in your markup.
+				</p>
+				<dl id="many-one">
+					<dt lang="en">Term</dt>
+					<dt lang="es">Término</dt>
+					<dt lang="fr">Terme</dt>
+					<dd>This description applies to each of the above three terms.</dd>
+				</dl>
+			</article>
+		</section>
+		<section id="examples">
+			<h2>Attribute Examples</h2>
+			<p>
+				The following description lists demonstrate some of the global attributes, including <code>id</code>,
+				<code>class</code>, <code>contenteditable</code>, and <code>draggable</code>.
+			</p>
+			<p>This description list is editable.</p>
+			<dl id="example-list" class="primary" contenteditable>
+				<dt>Term 1</dt>
+				<dd>Description 1</dd>
+				<dt>Term 2</dt>
+				<dd>Description 2</dd>
+				<dt>Term 3</dt>
+				<dd>Description 3</dd>
+			</dl>
+			<p>This description list is draggable.</p>
+			<dl class="secondary" draggable>
+				<dt>Term 1</dt>
+				<dd>Description 1</dd>
+				<dt>Term 2</dt>
+				<dd>Description 2</dd>
+				<dt>Term 3</dt>
+				<dd>Description 3</dd>
+			</dl>
+		</section>
+		<section id="css-tricks">
+			<h2>CSS</h2>
+			<p>
+				The default styling for description lists, shown in each of the examples above, is not very exciting.
+				Below, a simple application of <code>css-grid</code> aligns the terms and descriptions into a more user-friendly layout. The use of the <code>::after</code> selector on <code>&lt;dt&gt;</code> elements allows you to add a delimiter between each term and definition - in this case, a colon <code>:</code>. 
+			</p>
+			<dl id="css-list">
+				<dt style="grid-area: term1;">Term 1</dt>
+				<dd style="grid-area: def1;">Description 1</dd>
+				<dd style="grid-area: alt1;">Alternate Description 1</dd>
+				<dd style="grid-area: alt2;">
+					Alternate Description 2. A very long description that will end up having to wrap to additional
+					lines.
+				</dd>
+				<dt style="grid-area: term2;">Term 2</dt>
+				<dd style="grid-area: def2;">Description 2</dd>
+				<dt style="grid-area: term3;">Term 3</dt>
+				<dd style="grid-area: def3;">Description 3</dd>
+			</dl>
+		</section>
+	</body>
+</html>

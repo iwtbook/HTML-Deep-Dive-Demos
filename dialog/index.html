@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&lt;dialog&gt;</title>
+
+  <!-- Google Fonts - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+  <header>
+    <h1>Dialog</h1>
+  </header>
+
+  <section id="syntax">
+    <h2>General Syntax & Usage</h2>
+    <p>According to the current <a href="https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element">HTML Standard</a>, the <code>&lt;dialog&gt;</code> element represents a part of an application that a user interacts with to perform a task, for example a dialog box, inspector, or window. The <code>&lt;dialog&gt;</code> element has two states: open and closed. By default, the element is closed and hidden from the user. In order to present the dialog element to the user (without using CSS to modify its default settings), the <code>open</code> attribute must be present. This can be done manually by adding the boolean attribute to the element, but it is recommended to be done programmatically using the element's built in methods <code>.show()</code>, <code>.showModal()</code>, <code>.close([<i>result</i>])</code>, and <code>.returnValue[=<i>result</i>]</code>. These will be touched on more later. Below is an example of a basic <code>&lt;dialog&gt;</code> element:</p>
+
+    <code class="code-example-pre">
+<pre>&lt;dialog id="demoDialog"&gt;
+  &lt;p&gt;This is a dialog element&lt;/p&gt;
+&lt;/dialog&gt;
+</pre>
+    </code>
+
+    <dialog id="demoDialog">
+      <p>This is a dialog element</p>
+    </dialog>
+
+    <br>
+    <button onclick="if(demoDialog.open){demoDialog.close()}else{demoDialog.show()}">Toggle Dialog</button>
+
+  </section>
+  <section id="interactivity">
+    <h2>Interactivity</h2>
+    <p>The <code>&lt;dialog&gt;</code> element is inherently interactive since it must be toggled programmatically with JavaScript (a similar affect can be achieved with CSS only, but it does not retain the same benefits of toggling it with JavaScript). There are four main methods you can use to interact with the <code>&lt;dialog&gt;</code> element:</p>
+    <dl>
+      <dt>.show()</dt>
+      <dd>Displays the <code>&lt;dialog&gt;</code> element is was called on. If the <code>&lt;dialog&gt;</code> element already has an <code>open</code> attribute it does nothing, but if not it adds one and focuses the dialog element.</dd>
+      <dt>.showModal()</dt>
+      <dd>This method is similar to the <code>.show()</code> method, but it makes the <code>dialog</code> element in question the top-most modal dialog and prevents the user from interacting with the rest of the screen.</dd>
+      <dt>.close([<i>result</i>])</dt>
+      <dd>This method closes the <code>&lt;dialog&gt;</code> element is was called on. If the <code>&lt;dialog&gt;</code> element doesn't have an <code>open</code> element then it does nothing, but if it has one then it removes it, removes the element from the document's top layer, and hides it.</dd>
+      <dt>.returnValue[=<i>result</i>]</dt>
+      <dd>Returns the dialog's return value. Can be used to get and set the return value of the dialog as well.</dd>
+    </dl>
+
+    <h3>Example: .show() and .close()</h3>
+
+    <p>The Toggle Dialog button in the first section utilizes two of these methods: <code>.show()</code> and <code>.close()</code>. Here is how the toggle was implemented:</p>
+
+    <code class="code-example-pre">
+<pre>&lt;dialog id="demoDialog"&gt;
+  &lt;p&gt;This is a dialog element&lt;/p&gt;
+&lt;/dialog&gt;
+
+&lt;button onclick="if(demoDialog.open) { demoDialog.close() } else { demoDialog.show() }"&gt;Toggle Dialog&lt;/button&gt;
+</pre>
+    </code>
+
+    <dialog id="demoDialog2">
+      <p>This is a dialog element</p>
+    </dialog>
+    <br>
+    <button onclick="if(demoDialog2.open){demoDialog2.close()}else{demoDialog2.show()}">Toggle Dialog</button>
+
+    <h3>Example: .showModal()</h3>
+
+    <p>To implement a dialog that utilizes <code>.showModal()</code> is also fairly simple. The main difference though is that since the user won't be able to interact with anything underneath that modal <code>&lt;dialog&gt;</code> element, a close button will need to be included inside of it. Here's an example of how one might go about it:</p>
+
+    <code class="code-example-pre">
+<pre>&lt;dialog id="modalDialog"&gt;
+  &lt;p&gt;This is a modal dialog&lt;/p&gt;
+  &lt;button onclick="modalDialog.close()"&gt;Close Modal&lt;/button&gt;
+&lt;/dialog&gt;
+
+&lt;button onclick="modalDialog.showModal()"&gt;Show Modal&lt;/button&gt;
+</pre>
+    </code>
+
+    <dialog id="modalDialog">
+      <p>This is a modal dialog</p>
+      <button onclick="modalDialog.close()">Close Modal</button>
+    </dialog>
+
+    <br>
+    <button onclick="modalDialog.showModal()">Show Modal</button>
+
+    <h3>Example: returnValue</h3>
+
+    <p>The <code>returnValue</code> can also be handy when you're using your dialog to get information from the user, such as asking them to confirm something. Although there is the <code>confirm()</code> method in JavaScript, it looks a lot more professional to have a nice, styled dialog menu to perform such an action. Here is an example of a confirmation dialog menu.</p>
+
+    <code class="code-example-pre">
+  <pre>&lt;dialog id="modalDialog"&gt;
+  &lt;p&gt;Do you confirm?&lt;/p&gt;
+  &lt;button onclick="confirmDialog.returnVal='Cancel';updateOutput();confirmDialog.close()"&gt;Cancel&lt;/button&gt;
+  &lt;button onclick="confirmDialog.returnVal='OK';updateOutput();confirmDialog.close()"&gt;OK&lt;/button&gt;
+&lt;/dialog&gt;
+
+&lt;button onclick="confirmDialog.showModal()"&gt;Confirm Modal&lt;/button&gt;
+
+&lt;output id="confirmOutput"&gt;Confirmation:&lt;/output&gt;
+
+&lt;script&gt;
+  function updateOutput() {
+    confirmOutput.innerHTML = `Confirmation: ${confirmDialog.returnVal}`;
+  }
+&lt;/script&gt;
+</pre>
+    </code>
+
+    <dialog id="confirmDialog">
+      <p>Do you confirm?</p>
+      <button onclick="confirmDialog.returnVal='Cancel';updateOutput();confirmDialog.close()">Cancel</button>
+      <button onclick="confirmDialog.returnVal='OK';updateOutput();confirmDialog.close()">OK</button>
+    </dialog>
+
+    <br>
+    <button onclick="confirmDialog.showModal()">Confirm Modal</button>
+    <br>
+    <output id="confirmOutput" style="background-color:white;display:inline-block;padding:5px 10px;border-radius:5px;">Confirmation:</output>
+    <script>
+      function updateOutput() {
+        confirmOutput.innerHTML = `Confirmation: ${confirmDialog.returnVal}`;
+      }
+    </script>
+  </section>
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+    <p>The dialog element has a few key features that help with accessibility. When using the <code>.show()</code> and <code>.showModal()</code> methods, if any <code>&lt;button&gt;</code> or <code>&lt;input&gt;</code> elements are in the <code>&lt;dialog&gt;</code> then the first one is autofocused. As it is common for <code>&lt;dialog&gt;</code> elements to be used for small forms, this makes it much easier to simply tab through each input. Here's an example below of a sign up form <code>&lt;dialog&gt;</code> that you can interact with and tab through to test this out.</p>
+
+    <code class="code-example-pre">
+<pre>&lt;dialog id="accessibleDialog"&gt;
+  &lt;p&gt;Sample Dialog Form&lt;/p&gt;
+  &lt;input type="text" id="name" name="name" placeholder="name"&gt;
+  &lt;input type="email" id="email" name="email" placeholder="email"&gt;
+  &lt;input type="tel" id="phone" name="phone" placeholder="phone"&gt;
+  &lt;button onclick="accessibleDialog.close()"&gt;Cancel&lt;/button&gt;
+  &lt;button onclick="accessibleDialog.close()"&gt;OK&lt;/button&gt;
+&lt;/dialog&gt;
+
+&lt;button onclick="accessibleDialog.showModal()"&gt;Open Accesible Dialog&lt;/button&gt;</pre>
+    </code>
+
+    <br>
+
+    <dialog id="accessibleDialog">
+      <p>Sample Dialog Form</p>
+      <input type="text" id="name" name="name" placeholder="name">
+      <input type="email" id="email" name="email" placeholder="email">
+      <input type="tel" id="phone" name="phone" placeholder="phone">
+      <button onclick="accessibleDialog.close()">Cancel</button>
+      <button onclick="accessibleDialog.close()">OK</button>
+    </dialog>
+
+    <button onclick="accessibleDialog.showModal()">Open Accesible Dialog</button>
+  </section>
+  <section id="misuse">
+    <h2>Misuse</h2>
+    <h3>Manually Adding / Removing <code>open</code> Attribute</h3>
+    <p>If you weren't aware of the methods used to show and hide the <code>&lt;dialog&gt;</code> element, it might be tempting to manually display and hide it by inserting and removing the element's <code>open</code> attribute. While this might seem to work, there are a few key disadvantages to doing this:</p>
+    <ol>
+      <li>You lose the automatic focus of the elements within the dialog box.
+        <p>While this can be achieve with more JavaScript, at best it is overengineering a solution that already exists for free, and at worst you forget to even fix it and lose that accessibility gain completely.</p>
+      </li>
+      <li>Removing the <code>open</code> attribute will not fire the <code>close</code> event, which means the close() method will no longer even work afterwards, forcing you to always remove the attribute manually.
+        <p>This doesn't seem so bad if the <code>&lt;dialog&gt;</code> element was opened with the <code>.show()</code> method, but if it was opened with the <code>.showModal()</code> method, then the document won't "unlock" even though the <code>&lt;dialog&gt;</code> will be hidden.</p>
+      </li>
+    </ol>
+    <h3>CSS Only Dialog</h3>
+    <p>Now this misuse isn't quite as bad as the first misuse, but you can quickly run into the same problems if you aren't careful. There is one legitimate use for using only CSS to show / hide the <code>&lt;dialog&gt;</code> element, and that's when JavaScript isn't enabled. In this case, you are employing graceful degredation and making your application/website less brittle. With some clever use of the <code>autofocus</code> and <code>tabindex</code> attributes you can get pretty close to the <code>.show()</code> and <code>.hide()</code> methods.</p>
+    <p>Now if JavaScript is still enabled bu you employ this method anyway, it's the same issue as #1 above in that you are trying to recreate something that is given to you for free by the browser, so there is no point.</p>
+  </section>
+  <section id="references">
+    <h2>References</h2>
+    <ul>
+      <li><a href="https://www.w3.org/TR/html52/interactive-elements.html#the-dialog-element"
+          target="_blank">The
+          World Wide Web Consortium (w3.org - One of the HTML specs)</a>
+      </li>
+      <li><a href="https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element" target="_blank">The
+          Web Hypertext Application Technology Working Group (WHATWG - The living HTML
+          spec)</a>
+      </li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog"
+          target="_blank">Mozilla
+          Developer Network</a>
+      </li>
+      <li><a href="https://www.w3schools.com/tags/tag_dialog.asp"
+          target="_blank">w3schools.com</a>
+      </li>
+      <li><a href="https://htmlreference.io/element/dialog/"
+          target="_blank">htmlreference.io</a>
+      </li>
+      <li><a href="https://caniuse.com/"
+          target="_blank">caniuse.com</a>
+      </li>
+    </ul>
+  </section>
+</body>
+
+</html>

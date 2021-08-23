@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&lt;meta&gt;</title>
+
+  <!-- Google Fonts - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+  <header>
+    <h1>Meta</h1>
+  </header>
+
+  <section id="syntax">
+    <h2>General Syntax & Usage</h2>
+    <p>According to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta">MDN Web Docs</a>: The HTML <code>&lt;meta&gt;</code> element represents metadata that cannot be represented by other HTML meta-related elements, like <code>&lt;base&gt;</code>, <code>&lt;link&gt;</code>, <code>&lt;script&gt;</code>, <code>&lt;style&gt;</code>, or <code>&lt;title&gt;</code>.</p>
+    <p>There are four different main functions of the <code>&lt;meta&gt;</code> element:</p>
+    <ul>
+      <li>Providing <i>document-level metadata</i>. As the name implies, this is metadata that applies to the document as a whole, and is applied when the <code>name</code> attribute is set.</li>
+      <li>Providing a <i>pragma directive</i>, which is just a fancy way to tell the browser how it should handle the document. This is enabled when the <code>http-equiv</code> attribute is set.</li>
+      <li>Providing a <i>charset declaration</i>, which just tells the browser which character set to use for the document. Without this the characters might not render properly on the user's screen. This is enabled when the <code>charset</code> attribute is set.</li>
+      <li>Providing <i>user-defined metadata</i>, which is a catch-all for any other bits of metadata that a user would like to include. This is enabled when the <code>itemprop</code> attribute is set.</li>
+    </ul>
+    <p>A <code>&lt;meta&gt;</code> element with a <code>charset</code> attribute should always be included on a webpage as without the correct characterset your webpage textual content might break.</p>
+    <p>A <code>&lt;meta&gt;</code> element must serve exactly one of these purposes, so you cannot have both <code>name</code> and <code>http-equiv</code> on the same element, nor can you have none of the above attributes. Luckily, you can include as many <code>&lt;meta&gt;</code> elements as you like. Here are some examples of each of those attributes:</p>
+
+    <code class="code-example-pre">
+      &lt;meta name="keywords" content="meta,metadata,data,element,HTML"&gt;
+    </code><br>
+    <code class="code-example-pre">
+      &lt;meta http-equiv="content-type" content="text/html"&gt;
+    </code><br>
+    <code class="code-example-pre">
+      &lt;meta charset="utf-8"&gt;
+    </code><br>
+    <code class="code-example-pre">
+      &lt;meta itemprop="Name" content="Value"&gt;
+    </code>
+    
+    <p>The itemprop attribute allows you to create a name/value pair to store any data you would like to retrieve later. In any other element this attribute normally takes the text inside the element as its value, but since the <code>&lt;meta&gt;</code> element does not take a closing tag, the value is stored in the content attribute.</p>
+  </section>
+  <section id="interactivity">
+    <h2>Interactivity</h2>
+    <p>Among various keywords that the <code>name</code> attribute can take on, the value of <code>viewport</code> is important to include in one of your webpage's <code>&lt;meta&gt;</code> elements. When a website does not have a mobile version available (or is poorly optimized for mobile devices), the rendered page will often be much larger than the device and then shrunken down so that the device just receives the desktop version instead of breaking the website layout. While this is handy for older non-optimized sites, it is actively harmful if you actually do have a mobile version. To prevent this from happening you simply set the <code>content</code> attribute of the <code>&lt;meta name="viewport"&gt;</code> element to <code>width=device-width, initial-scale=1</code>. This does two things: It prevents the rendered width from being the desktop width and forces it to be only as wide as the device, and it sets the zoom scale to be 1 so the page is neither zoomed in nor zoomed out. Using it is as follows:</p>
+    <code class="code-example-pre">&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code>
+    <br>
+    <figure style="display:inline-block;margin-right:40px;">
+      <img src="images/mobile-view-no-tag.PNG" alt="sdcourts.gov without the meta element">
+      <figcaption style="text-align:center;">A non-mobile-optimized website without this element</figcaption>
+    </figure>
+    <figure style="display:inline-block;">
+      <img src="images/mobile-view-tag.PNG" alt="sdcourts.gov with the meta element">
+      <figcaption style="text-align:center;">A non-mobile-optimized website with this element</figcaption>
+    </figure>
+  </section>
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+    <p>The first step in accessibility is having users access your website in the first place, and 99% of the time that is going to be from a search engine. While many, many things affect the SEO score of your website, two of the most critical are the <code>&lt;title&gt;</code> and <code>&lt;meta name="description"&gt;</code> elements. When you use a search engine, there are two main parts of a web result: The link and the description underneath the link. The title of that link comes from the <code>&lt;title&gt;</code> element (which is part of the reason it's technically the only required HTML element), while the short description underneath that link comes from the <code>&lt;meta name="description"&gt;</code> element.</p>
+    
+    <img alt="Google search result for the query YouTube" src="images/youtube.PNG" style="max-width: 600px;" height=108 width=600>
+
+    <p>For example, for this result for the query "YouTube", the <code>&lt;title&gt;</code> and <code>&lt;meta name="description"&gt;</code> would look like this:</p>
+
+    <code class="code-example-pre">
+      <pre>&lt;title&gt;YouTube&lt;/title&gt;
+
+&lt;meta name="description" content="Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube."&gt;</pre>
+    </code>
+  </section>
+  <section id="internationalization">
+    <h2>Internationalization</h2>
+    <p>Sometimes you might not trust automatic translations of the meta data on your page so it might be useful to include different versions of your key content in different languages. To accomplish this, the global attribute <code>lang</code> allows you to display what language that <code>&lt;meta&gt;</code> element contains. For example, if you had a short description of your website in a <code>&lt;meta&gt;</code> element for search engines to use, you could include many different languaged versions of it like this:</p>
+    <code class="code-example-pre">
+    <pre>&lt;meta name="description" lang="en" content="This is a short description"&gt;
+&lt;meta name="description" lang="sp" content="Esta es una breve descripción"&gt;
+&lt;meta name="description" lang="fr" content="Ceci est une brève description"&gt;
+&lt;meta name="description" lang="de" content="Dies ist eine kurze Beschreibung"&gt;
+&lt;meta name="description" lang="jp" content="これは短い説明です"&gt;</pre>
+</code>
+  </section>
+  <section id="misuse">
+    <h2>Misuse</h2>
+    <p>As soon as search engines started to take off on the internet as the main mode of web transportation, websites started to realize the importance of having their websites get ranked higher than others in the search results. In order to boost their ranking, a common practice (that doesn't work well anymore) was to stuff as many keywords as they could in the <code>&lt;meta&gt;</code> elements for their website so their website popped up for the most number of searches. This would have the unfortunate side effect though of having their website pop up for searches that weren't even remotely relevant to its content. As search engine users started to become unhappy that their searches weren't as relevant as they had liked, the search engines changed their algorithms to disuade this practice. If a website were to have a <code>&lt;meta&gt;</code> element similar to this:</p>
+    <code class="code-example-pre">&lt;meta name="keywords" content="paper,<wbr>tree,<wbr>pencil,<wbr>women,<wbr>steel,<wbr>bread,<wbr>ought,<wbr>company,<wbr>tape,<wbr>hundred,<wbr>organized,<wbr>prize,<wbr>branch,<wbr>trick,<wbr>variety,<wbr>practice,<wbr>successful,<wbr>fresh,<wbr>broke,<wbr>parent,<wbr>condition,<wbr>discussion,<wbr>purple,<wbr>few,<wbr>lower,<wbr>force,<wbr>led,<wbr>aware"&gt;</code>
+    <p>but the website was only one that sold paper products, you can imagine how frustrated someone who searched for bread might be when they see that website pop up in their search.</p>
+  </section>
+  <section id="references">
+    <h2>References</h2>
+    <ul>
+      <li><a href="https://www.w3.org/TR/html52/document-metadata.html#the-meta-element"
+          target="_blank">The
+          World Wide Web Consortium (w3.org - One of the HTML specs)</a>
+      </li>
+      <li><a href="https://html.spec.whatwg.org/multipage/semantics.html#the-meta-element" target="_blank">The
+          Web Hypertext Application Technology Working Group (WHATWG - The living HTML
+          spec)</a>
+      </li>
+      <li><a href="http://www.htmlref.com/reference/appa/tag_meta.htm"
+          target="_blank">The
+          The Complete HTML & XHTML reference, fourth edition</a>
+      </li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta"
+          target="_blank">Mozilla
+          Developer Network</a>
+      </li>
+      <li><a href="https://www.w3schools.com/tags/tag_meta.asp"
+          target="_blank">w3schools.com</a>
+      </li>
+      <li><a href="https://htmlreference.io/element/meta/"
+          target="_blank">htmlreference.io</a>
+      </li>
+      <li><a href="https://caniuse.com/"
+          target="_blank">caniuse.com</a>
+      </li>
+    </ul>
+  </section>
+</body>
+
+</html>

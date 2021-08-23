@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <iframe id="output-frame-id" frameborder="0" ></iframe>
+
+  <script>
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'https://book.introweb.tech/d630ac8694c64e24ad49e08ca435c614');
+    xhr.onreadystatechange = handler;
+    xhr.responseType = 'blob';
+    // xhr.setRequestHeader('origin', 'www.notion.so');
+    xhr.send();
+
+    function handler() {
+      if (this.readyState === this.DONE) {
+        if (this.status === 200) {
+          // this.response is a Blob, because we set responseType above
+          var data_url = URL.createObjectURL(this.response);
+          document.querySelector('#output-frame-id').src = data_url;
+        } else {
+          console.error('no pdf :(');
+        }
+      }
+    }
+  </script>
+</body>
+</html>

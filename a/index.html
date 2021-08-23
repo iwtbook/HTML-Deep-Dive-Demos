@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&lt;a&gt;</title>
+
+  <!-- Google Fonts - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+  <header>
+    <h1>A</h1>
+  </header>
+
+  <section id="syntax">
+    <h2>General Syntax & Usage</h2>
+    <p>According to the <a href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element" target="_blank">HTML Standard</a>, the <code>&lt;a&gt;</code> element represents a hyperlink (also referred to as a hypertext anchor) labeled by its contents.</p>
+    <p>In most use cases it will have an <code>href</code> attribute, with the <code>target</code> and <code>title</code> attributes occassionally appearing. Here is an example of one being used:</p>
+    <code class="code-example-pre"><pre>&lt;a href="https://google.com/" target="_blank"&gt;Google&lt;/a&gt;</pre></code>
+    <p>And how the result:</p>
+    <a href="https://google.com" target="_blank" style="display:block;margin-bottom:10px;">Google</a>
+  </section>
+  <section id="attributes">
+    <h2>Attributes</h2>
+    <dl>
+      <dt>href:</dt>
+      <dd>Short for hypertext reference, this attribute specifies the destination of the linked resources. Within an <code>&lt;a&gt;</code> element this attribute can take:
+        <ul>
+          <li>Sections of a page with fragment URLs (Such as an element's ID prefixed with #)</li>
+          <li>Pieces of media files with media fragments</li>
+          <li>Telephone numbers with <code>tel:</code> prefixed URLs</li>
+          <li>Email addresses with <code>mailto:</code> prefixed URLs</li>
+        </ul>
+      </dd>
+      <dt>target:</dt>
+      <dd>Determines which browsing context (tab, window, or frame) the hyperlink will open in. By default, putting a plain name in there will look for a frame with that name, so special keywords were allocated that start with an underscore to denote generic browsing contexts.
+        <dl>
+          <dt>_self</dt>
+          <dd>will open the link in the current tab</dd>
+          <br>
+          <dt>_blank</dt>
+          <dd>will usually open the link in a new tab, but some user's might have it set to open in a new window.</dd>
+          <br>
+          <dt>_parent</dt>
+          <dd>will open in the parent browsing context. For example, if an <code>&lt;iframe&gt;</code> is embedded in a webpage and a user clicks on a link from within it with the <code>target</code> is set to <code>_parent</code>, then the link will open in the outer webpage that the <code>&lt;iframe&gt;</code> is embedded in.</dd>
+          <br>
+          <dt>_top</dt>
+          <dd>will open in the top most parent browsing context. Similar to <code>_parent</code>, except if there are multiple nested <code>&lt;iframe&gt;</code>s within each other and a link with <code>_top</code> is clicked in the innermost <code>&lt;iframe&gt;</code>, then the entire tab will change to that hyperlink instead of just that innermost frame.</dd>
+        </dl>
+      </dd>
+      <dt>download:</dt>
+      <dd>When this attribute is present the resource specified with <code>href</code> will be downloaded when the link is clicked. If a value is specified (which is optional), then that value will be used as the filename upon download.</dd>
+      <br>
+      <dt>ping:</dt>
+      <dd>This attribute is used to send POST requests to a space separated list of URLs when the link is used. These requests don't contain any other information in their body other than the word <code>PING</code>. They are particularly handy for tracking purposes.</dd>
+      <br>
+      <dt>rel:</dt>
+      <dd>This attribute defines the relationship between the linked resource and the current document. Here are the various values that rel can take
+        <dl>
+          <dt>alternate</dt>
+          <dd>The link is an alternate version of this document, often used in conjunction with <code>lang</code> to provide an alternate language.</dd>
+          <br>
+          <dt>archives:</dt>
+          <dd>The linked document is related and is of historical interest.</dd>
+          <br>
+          <dt>bookmark:</dt>
+          <dd>The linked document serves as a bookmark.</dd>
+          <br>
+          <dt>external:</dt>
+          <dd>The linked document is not a local resource (to the organization or server).</dd>
+          <br>
+          <dt>first:</dt>
+          <dd>The link is a reference to the first document in a collection.</dd>
+          <br>
+          <dt>help:</dt>
+          <dd>The link references a help document for either the current document or the site as a whole.</dd>
+          <br>
+          <dt>index:</dt>
+          <dd>The link references a page that provdes an index for the current document.</dd>
+          <br>
+          <dt>last:</dt>
+          <dd>The link is a reference to the last document in a collection.</dd>
+          <br>
+          <dt>license:</dt>
+          <dd>The link is a reference to the legal or copyright information for the current document.</dd>
+          <br>
+          <dt>next:</dt>
+          <dd>The link is a reference to the next document in a collection.</dd>
+          <br>
+          <dt>nofollow:</dt>
+          <dd>This indicates that the link shouldn't be automatically followed by robots.</dd>
+          <br>
+          <dt>noreferrer:</dt>
+          <dd>This value indicates that browsers shouldn't send the referer header when the link is followed.</dd>
+          <br>
+          <dt>prev:</dt>
+          <dd>The link is a reference to the previous document in a collection.</dd>
+          <br>
+          <dt>search:</dt>
+          <dd>This value indicates that the link references a search facility in a site.</dd>
+          <br>
+          <dt>sidebar:</dt>
+          <dd>This value specifies a URL that should be displayed in a browser sidebar.</dd>
+          <br>
+          <dt>tag:</dt>
+          <dd>This value specifies a tag that applies to the document.</dd>
+          <br>
+          <dt>up:</dt>
+          <dd>This value provides a link to the document or section "up" from the current document, usually the parent or index document for the current URL.</dd>
+        </dl>
+      </dd>
+      <dt>hreflang:</dt>
+      <dd>Indicates the language of the linked resource, should match the core <code>lang</code> attribute on the linked document.</dd>
+      <br>
+      <dt>type:</dt>
+      <dd>The MIME type of the linked resource, typically just advisory information.</dd>
+      <br>
+      <dt>referrerpolicy:</dt>
+      <dd>The referer is usually the entire current URL of origin site. This includes the protocol, subdomain, domain, path, and query string. This referrerpolicy allows you to modify how much or how little of this URL to include, and to whom this URL is sent to.</dd>
+    </dl>
+  </section>
+  <section id="properties">
+    <h2>Properties</h2>
+    <dl>
+      <dt>Inline:</dt>
+      <dd>The <code>&lt;a&gt;</code> element is an inline element, which means that it continues the flow of content on a line. Unlike block elements, inline elements don't start with a new line an you cannot set their width or height.</dd>
+      <br>
+      <dt>Flow Content:</dt>
+      <dd>The <code>&lt;a&gt;</code> element belongs to the flow content category of elements which typically contain text or embedded content.</dd>
+      <br>
+      <dt>Phrasing Content:</dt>
+      <dd>The <code>&lt;a&gt;</code> element belongs to the phrasing content category of elements which are flow elements that could belong inside a paragraph.</dd>
+      <br>
+      <dt>Interactive Content:</dt>
+      <dd>The <code>&lt;a&gt;</code> element belongs to the interactive content category of elements which are, as the name implies, elements that the user can interact with. In this case, the user can click on the <code>&lt;a&gt;</code> element to follow/download the link.</dd>
+      <br>
+      <dt>Palpable Content:</dt>
+      <dd>The <code>&lt;a&gt;</code> element belongs to the palpable content category of elements which are simply elements that are visually rendered.</dd>
+      <br>
+    </dl>
+  </section>
+  <section id="interactivity">
+    <h2>Interactivity</h2>
+    <p>The <code>&lt;a&gt;</code> element has a few attributes that add various bits of interaction. Here are two of note:</p>
+    <p>The <code>target</code> element, as described above, allows you to specify which browsing context you would like the link to open up to. This is handy as its an easy built in way to create auxillary pop-up windows or new tabs so as to not leave the main browsing context entirely. One must be careful though to notify the user in some way what action will occur so as to not surprise their expectations too much. A simple (new tab) or (popup) phrase at the end of the link text usually will suffice.</p>
+    <p>The <code>download</code> attribute allows the user to immediately download the linked resource after clicking the link instead of having to open it before downloading. While a user might appreciate saving the click or two, this one must also be used carefully as users generally dislike having somethine download unexpectedly. Just as before, a [download] or (download) warning on the link will usually suffice.</p>
+  </section>
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+    <p>While the <code>&lt;a&gt;</code> element can be styled with CSS just like any other element, it is recommended to not stray too far from the average look of a link. Often times people with vision difficulty rely on these link cues to determine what is an isn't a link. The WCAG guidelines lay out a pretty good baseline of what to follow if you're unsure of the styling of your links, check them out below.</p>
+
+    <h3>Link Text</h3>
+    <p>A link should always make sense out of context on its own, so avoid generic phrases such as:</p>
+    <ul>
+      <li>click here</li>
+      <li>here</li>
+      <li>more</li>
+      <li>read more</li>
+      <li>link to [some desc]</li>
+      <li>info</li>
+    </ul>
+    <p>Links should also be the right length. A link that's too long might be frustrating for mobile users or visually impaired people who have to listen to the entire link. Alternatively, a link that's too short or close together might prove difficult to click, even more so on mobile with imprecise fingers.</p>
+
+    <h3>Link Styling</h3>
+    <p>Whether you consciously think about it or not, you already have an idea of what a link looks like in your head. They're usually blue (specifically either <span style="color:#0645AD">#0645AD</span> or <span style="color:#3366BB">#3366BB</span>), have an underline, and the underline disappears when you hover on it. Utilizing these trends can help you massively in terms of users instantly understanding how to navigate your website. Though often times designers will want to help style their links to fit in with their website more than just the default style, so here are the WCAG guidelines for what you should and shouldn't change:</p>
+    <ul>
+      <li>It is advised to keep the link's underline by default when unhovered (due to color blindness)</li>
+      <li>If it isn't underlined by default, it's recommended that:
+        <ul>
+          <li>The link have a 3:1 contrast ratio from the surrounding non-link text</li>
+          <li>The link presents a "non-color designator" on both mouse hover and keyboard focus</li>
+        </ul>
+      </li>
+      <li>Other visual affects for hovering, such as background glows, drop shadows, and color changes also help users know that the item can be clicked on</li>
+      <li>Nearly any time <code>a:hover</code> are defined in CSS, it should be modified to be <code>a:hover, a:focus</code> so that the same visual link presentation is available when keyboard users navigate or 'tab' to the link.</li>
+    </ul>
+  </section>
+  <section id="internationalization">
+    <h2>Internationalization</h2>
+    <p>Similar to most elements, the <code>&lt;a&gt;</code> element has an attribute to help determine its language, although it is slightly different than others. The <code>&lt;a&gt;</code> element has the attribute <code>hreflang</code> which specifies the language of the resource it is linking to, rather than the language of the element itself.</p>
+  </section>
+  <section id="misuse">
+    <h2>Misuse</h2>
+    <p>The purpose of a link is to create a hyperlink to web pages, files, email addresses, locations in the same page, or another URL addressable piece of content. Without knowing this, it is easy to assume that a link is akin to a button without a background, as it is an element you click on in which an action occurs.</p>
+    <p>It is important to use the elements as they were intended though since it starts to raise issues for screen readers or other bots crawling through the website. For screen readers, they might read out your "button" as a link, confusing the user as to what its function is. For bots, they might try to follow the link so as to index the page, but wouldn't go anywhere so they would mark that that element as a dead link potentially hurting your SEO. A good general rule of thumb is that if you are using JavaScript with your <code>&lt;a&gt;</code> element, it is probably being misused.</p>
+    <p>Below are two elements that stylistically look the same, but one (the <code>&lt;a&gt;</code> element) functions acts as a link and one (the <code>&lt;button&gt;</code> element) as a button.</p>
+
+    <code class="code-example-pre">
+      <pre>&lt;a href="https://google.com"&gt;Google&lt;/a&gt;</pre>
+    </code>
+    <br>
+    <a href="https://google.com" id="googleLink">Google</a>
+    <code class="code-example-pre" style="margin-top:10px;">
+      <pre>&lt;button onclick="alert('You pressed the Google button');"&gt;Google&lt;/button&gt;</pre>
+    </code>
+    <button onclick="alert('You pressed the Google button');" id="googleButton">Google</button>
+  </section>
+  <section id="references">
+    <h2 id="top">References</h2>
+    <ul>
+      <li><a href="https://www.w3.org/TR/html52/textlevel-semantics.html#the-a-element"
+          target="_blank">The
+          World Wide Web Consortium (w3.org - One of the HTML specs)</a>
+      </li>
+      <li><a href="https://html.spec.whatwg.org/#the-a-element" target="_blank">The
+          Web Hypertext Application Technology Working Group (WHATWG - The living HTML
+          spec)</a>
+      </li>
+      <li><a href="http://www.htmlref.com/reference/appa/tag_a.htm"
+          target="_blank">The
+          The Complete HTML & XHTML reference, fourth edition</a>
+      </li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a"
+          target="_blank">Mozilla
+          Developer Network</a>
+      </li>
+      <li><a href="https://www.w3schools.com/tags/tag_a.asp"
+          target="_blank">w3schools.com</a>
+      </li>
+      <li><a href="https://htmlreference.io/element/a/"
+          target="_blank">htmlreference.io</a>
+      </li>
+      <li><a href="https://caniuse.com/"
+          target="_blank">caniuse.com</a>
+      </li>
+    </ul>
+  </section>
+</body>
+
+</html>

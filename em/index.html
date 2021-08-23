@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&lt;em&gt;</title>
+
+  <!-- Google Fonts - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+  <header>
+    <h1>Em</h1>
+  </header>
+
+  <section id="syntax">
+    <h2>General Syntax & Usage</h2>
+    <p>According to the <a href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-em-element">HTML Standard</a>, the <code>&lt;em&gt;</code> element represents stressed emphasis of its contents. The <code>&lt;em&gt;</code> element stacks, so if you have an entire phrase that is emphasized but would like to emphasize part of that phrase even more, you can use another <code>&lt;em&gt;</code> element inside. Though, it is advised not to overuse the <code>&lt;em&gt;</code> element. Here are some examples</p>
+    <code class="code-example-pre">&lt;p&gt;Dogs are my &lt;em&gt;favorite&lt;/em&gt; animals.&lt;/p&gt;</code>
+    <br>
+    <code class="code-example-pre">&lt;p&gt;&lt;em&gt;Dogs are my &lt;em&gt;favorite&lt;/em&gt; animals.&lt;/em&gt;&lt;/p&gt;</code>
+  </section>
+  <section id="properties">
+    <h2>Properties</h2>
+    <p><code><em>Inline:</em></code> The <code>&lt;em&gt;</code> element is an inline element, which means that it continues the flow of content on a line. Unlike block elements, inline elements don't start with a new line an you cannot set their width or height.</p>
+    <p><code><em>Flow Content:</em></code> The <code>&lt;em&gt;</code> element belongs to the flow content category of elements which typically contain text or embedded content.</p>
+    <p><code><em>Phrasing Content:</em></code> The <code>&lt;em&gt;</code> element belongs to the phrasing content category of elements which are flow elements that could belong inside a paragraph.</p>
+    <p><code><em>Palpable Content:</em></code> The <code>&lt;em&gt;</code> element belongs to the palpable content category of elements which are simply elements that are visually rendered.</p>
+  </section>
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+    <p>Although most every browser renders the <code>&lt;em&gt;</code> element as italicised, this effect can quite easily be replicated with a <code>&lt;span&gt;</code> element and some CSS, that is just a logical rendering that is outside the purpose of the element. When using the <code>&lt;span&gt;</code> element to italicize text you would like to emphasize instead of using the <code>&lt;em&gt;</code> element, you strip that semantic meaning so screen readers and bots will just see it as text of the same importance of whats around it. For visually impaired people who rely on these screen readers, they also lose that emphasis which can sometimes change the entire contextual meaning of the sentence. Consider the following example:</p>
+    <p class="code-example-pre" style="margin:0">The man did not <em>steal</em> the money</p>
+    <br>
+    <p class="code-example-pre" style="margin-bottom:0">The man did not steal the money</p>
+    <p>In the first example it is implied that while the man did not steal the money persay, he is still involved with the money in some capacity. In the second example, it is a simple denial of involvement altogether. This makes the man seem much less guilty of the crime. Without the emphasized text, that implied subtle meaning of the first example is lost and it comes across just as the second example.</p>
+  </section>
+  <section id="misuse">
+    <h2>Misuse</h2>
+    <p>Since the <code>&lt;em&gt;</code> element usually renders as italicised text in the browser, it is often conflated with a styling tool to italicise any text you like, regardless of context. The <code>&lt;em&gt;</code> element has inherent semantic meaning, as stated above, that being to emphasize its text from the text around it.</p>
+  </section>
+  <section id="trivia">
+    <h3>Trivia</h3>
+    <p>The <code>&lt;em&gt;</code> element has been around almost as long as HTML has, having been introduced in HTML 1.2 around 1994 and then standardized in HTML 2.0 around 1995.</p>
+  </section>
+  <section id="references">
+    <h2>References</h2>
+    <ul>
+      <li><a href="https://www.w3.org/TR/html52/textlevel-semantics.html#the-em-element"
+          target="_blank">The
+          World Wide Web Consortium (w3.org - One of the HTML specs)</a>
+      </li>
+      <li><a href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-em-element" target="_blank">The
+          Web Hypertext Application Technology Working Group (WHATWG - The living HTML
+          spec)</a>
+      </li>
+      <li><a href="http://www.htmlref.com/reference/appa/tag_em.htm"
+          target="_blank">The
+          The Complete HTML & XHTML reference, fourth edition</a>
+      </li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/em"
+          target="_blank">Mozilla
+          Developer Network</a>
+      </li>
+      <li><a href="https://www.w3schools.com/tags/tag_em.asp"
+          target="_blank">w3schools.com</a>
+      </li>
+      <li><a href="https://htmlreference.io/element/em/"
+          target="_blank">htmlreference.io</a>
+      </li>
+      <li><a href="https://caniuse.com/"
+          target="_blank">caniuse.com</a>
+      </li>
+    </ul>
+  </section>
+</body>
+
+</html>

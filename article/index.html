@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&lt;article&gt;</title>
+
+  <!-- Google Fonts - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+  <header>
+    <h1>Article</h1>
+  </header>
+
+  <section id="syntax">
+    <h2>General Syntax & Usage</h2>
+    <p>According to the current <a href="https://html.spec.whatwg.org/multipage/sections.html#the-article-element">HTML Standard</a>, the <code>&lt;article&gt;</code> element represents a complete, or self-contained, composition in a document, page, application, or site. The examples they give are forum posts, magazines, newspaper articles, or blog entries. While most of these are long forms of content, it is important to note that length is not a requirement of the <code>&lt;article&gt;</code> element, only that its content is self contained. As such, there could be one <code>&lt;article&gt;</code> element for an entire NYT online article, and one <code>&lt;article&gt;</code> element for each individual comment on that same article. Below are some examples of the <code>&lt;article&gt;</code> element being used in context:</p>
+    
+    <code class="code-example-pre">
+<pre>For a long article about a recipe
+
+&lt;article&gt;
+  &lt;header&gt;
+    &lt;h1&gt;How to make Chocolate Chip Cookies&lt;/h1&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+    &lt;section id="ingredients"&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Chocolate Chips&lt;/li&gt;
+        &lt;li&gt;Eggs&lt;/li&gt;
+        &lt;li&gt;Flour&lt;/li&gt;
+        &lt;li&gt;Flour&lt;/li&gt;
+        &lt;li&gt;...&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/section&gt;
+    &lt;section id="instructions"&gt;
+      &lt;section id="instructionsWet"&gt;
+        &lt;p&gt;First, add your flour to your eggs...&lt;/p&gt;
+      &lt;/section&gt;
+      &lt;section id="instructionsDry"&gt;
+        &lt;p&gt;...&lt;/p&gt;
+      &lt;/section&gt;
+    &lt;section&gt;
+  &lt;/main&gt;
+&lt;/article&gt;</pre>
+    </code>
+
+    <br>
+
+    <code class="code-example-pre" style="margin-top:15px;">
+<pre>For a short, single, self-contained comment
+
+&lt;article class="user-comment"&gt;
+  &lt;img src="/profiles/CamdynR.png" alt="CamdynR's profile photo"&gt;
+  &lt;p class="username"&gt;CamdynR&lt;/p&gt;
+  &lt;p class="comment&gt;First&lt;/p&gt;
+&lt;/article&gt;</pre>
+    </code>
+
+    <p><code>&lt;article&gt;</code> elements are also allowed to nest other articles. One common use for nesting them is for when you have comments on an article or post, as was said above. Although the comments are self-contained, they are still relevant to the main article or post, so they usually get their own <code>&lt;article&gt;</code> element but nested inside of the main <code>&lt;article&gt;</code> element for the article. Below is the same two examples as above, but combined to show how they might fit together.</p>
+
+    <code class="code-example-pre" style="margin-bottom: 10px;">
+      <pre>For a long article about a recipe
+      
+&lt;article&gt;
+  &lt;header&gt;
+    &lt;h1&gt;How to make Chocolate Chip Cookies&lt;/h1&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+    &lt;section id="ingredients"&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Chocolate Chips&lt;/li&gt;
+        &lt;li&gt;Eggs&lt;/li&gt;
+        &lt;li&gt;Flour&lt;/li&gt;
+        &lt;li&gt;Flour&lt;/li&gt;
+        &lt;li&gt;...&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/section&gt;
+    &lt;section id="instructions"&gt;
+      &lt;section id="instructionsWet"&gt;
+        &lt;p&gt;First, add your flour to your eggs...&lt;/p&gt;
+      &lt;/section&gt;
+      &lt;section id="instructionsDry"&gt;
+        &lt;p&gt;...&lt;/p&gt;
+      &lt;/section&gt;
+    &lt;section&gt;
+  &lt;/main&gt;
+  &lt;section id="commentSection"&gt;
+    &lt;article class="userComment"&gt;
+      &lt;img src="/profiles/CamdynR.png" alt="CamdynR's profile photo"&gt;
+      &lt;p class="username"&gt;CamdynR&lt;/p&gt;
+      &lt;p class="comment"&gt;First&lt;/p&gt;
+    &lt;/article&gt;
+  &lt;/section&gt;
+&lt;/article&gt;</pre>
+          </code>
+  </section>
+  <section id="properties">
+    <h2>Properties</h2>
+    <p>While the <code>&lt;article&gt;</code> element doesn't have any special attributes outside of the regular global ones, its semantic value brings up an interesting point when thinking about custom elements.</p>
+    <p>There are two types of custom elements:</p>
+    <dl>
+      <dt>Autonomous custom elements</dt>
+      <dd>These are more widely adopted and recognized, they are custome elements that don't inherit from any standard HTML elements. You use them by writing them out as any other element, but with a custom name that contains a hyphen, e.g. <code>&lt;custom-element&gt;</code></dd>
+      <dt>Customized built-in elements</dt>
+      <dd>These custom elements aren't as widely adopted, but have a lot more potential. They build on top of a standard HTML element, in doing so inhereting its properties. To use it, you take the same name that you would use to creat an autonomous custom element, but you add it to a standard HTML element's <code>is</code> attribute. Here is an example: <code>&lt;h1 is="custom-element"&gt;</code></dd>
+    </dl>
+    <p>Customized built-in elements are powerful since you can then leverage an elements inherent semantic value, like <code>&lt;article&gt;</code>, while also adding extra function / styles to it. The more ubiquitous autonomous custom elements have no inherent meaning, so without JavaScript to create them, they lose all function and purpose. Without JavaScript, the <code>&lt;article&gt;</code> element will still act like a regular <code>&lt;article&gt;</code> element, so your code becomes less brittle.The only thing to watch out for is its browser adoption, since it is not compatable (as of July 28, 2020) with either IE 11 or Safari 13.1.</p>
+  </section>
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+    <p>For most regular users the <code>&lt;article&gt;</code> element does not provide any extra visual enhancement. Using a <code>&lt;div&gt;</code> instead would hardly affect the page to abled users. The real benefits of the <code>&lt;article&gt;</code> element, or any semantic element for that matter, is the enhanced experience for users with screen readers. Using semantic elements helps the screen reading robot decipher what the content is so that it can better explain the page to its user. Because of the added benefits to visually impaired users, and a desire to keep the internet accessible to all, search engines have also started to prioritize webpages that use this semantic markup. So not only is your webpage more accessible for using them, but you get an SEO increase as well, all for not much more effort than using a <code>&lt;div&gt;</code>.</p>
+  </section>
+  <section id="misuse">
+    <h2>Misuse</h2>
+    <p>The main confusion around the <code>&lt;article&gt;</code> element tends to come from getting it confused with the <code>&lt;section&gt;</code> element as they are semantically pretty similar. Their key difference though stems from the fact that the <code>&lt;article&gt;</code> element represents a complete, contained composition while a <code>&lt;section&gt;</code> element represents one complete part of a larger composition. From this you might assume that a <code>&lt;section&gt;</code> element must be nested within an <code>&lt;article&gt;</code> element, but this is not necessarily the case. <code>&lt;section&gt;</code> elements can divide any larger container, and <code>&lt;article&gt;</code> elements can be on their own without any subdivisions.Though generally it is useful to use the <code>&lt;section&gt;</code></p>
+  </section>
+  <section id="references">
+    <h2 id="top">References</h2>
+    <ul>
+      <li><a href="https://www.w3.org/TR/html52/sections.html#the-article-element"
+          target="_blank">The
+          World Wide Web Consortium (w3.org - One of the HTML specs)</a>
+      </li>
+      <li><a href="https://html.spec.whatwg.org/multipage/sections.html#the-article-element" target="_blank">The
+          Web Hypertext Application Technology Working Group (WHATWG - The living HTML
+          spec)</a>
+      </li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article"
+          target="_blank">Mozilla
+          Developer Network</a>
+      </li>
+      <li><a href="https://www.w3schools.com/tags/tag_article.asp"
+          target="_blank">w3schools.com</a>
+      </li>
+      <li><a href="https://htmlreference.io/element/article/"
+          target="_blank">htmlreference.io</a>
+      </li>
+      <li><a href="https://caniuse.com/"
+          target="_blank">caniuse.com</a>
+      </li>
+    </ul>
+  </section>
+</body>
+
+</html>

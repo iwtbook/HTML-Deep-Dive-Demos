@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ordered Lists</title>
+  
+  <!-- Google Fonts - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>Ordered Lists (&lt;ol&gt;)</h1>
+  </header>
+  <section id="description">
+    <h2>Overview</h2>
+    <p>
+      The <code>&lt;ol&gt;</code> element creates an ordered list of items. It can contain zero or more <code>&lt;li&gt;</code>
+      elements. Ordered lists are used when the order of the elements is important to the semantic structure of the page. If the order
+      of the elements does not matter/affect the structure of the document, an unordered list (<code>&lt;ul&gt;</code>) should
+      be used instead.
+    </p>
+
+    <p>An ordered list has a preceding marker before each list item, usually rendered as a decimal number. These markers can
+      be changed in the HTML using the <code>type</code> attribute, or via CSS using the <code>list-style-type</code>
+      property. Generally, defer to using the CSS <code>list-style-type</code> property unless the <code>type</code> adds
+      semantic meaning to the document.</p>
+    <p>
+      The permitted attributes are the global attributes, as well as three element specific attributes: <code>reversed</code>, <code>start</code>, and <code>type</code>.
+    </p>
+  </section>
+  <section id="uses">
+    <h2>Uses</h2>
+    <p>The <code>&lt;ol&gt;</code> element should be used when the order of items in a list has inherent meaning. For example, ordered lists should be used to display instructions (such as a how-to guide or recipe) or a page's table of contents. Below, see an example of a table of contents.</p>
+    <p>Note that nesting ordered lists does not nest the markers in an "outline" style. However, this can be changed with CSS.</p>
+    <ol>
+      <li>Introduction</li>
+      <li>HTML Basics
+        <ol>
+          <li>Introduction to Markup</li>
+          <li>Anatomy of an Element</li>
+          <li>Medium of the Web</li>
+        </ol>
+      </li>
+      <li>HTML Forms</li>
+      <li>CSS</li>
+    </ol>
+  </section>
+  <section id="examples">
+    <h2>Attribute Examples</h2>
+    <article id="globals">
+      <p>The following list demonstrates some of the global attributes, including <code>id</code>, <code>class</code>,
+        <code>contenteditable</code>, and <code>draggable</code>.</p>
+      <ol id="outer-example">
+        <li>List item one</li>
+        <li>List item two</li>
+        <li>Inner nested &lt;ol&gt; - I'm editable!
+          <ol contenteditable class="nested">
+            <li>Nested object one</li>
+            <li>Nested object two</li>
+            <li>Nested object three</li>
+            <li>Nested object four</li>
+          </ol>
+        </li>
+        <li>Inner nested &lt;ol&gt; - I'm draggable!
+          <ol draggable class="nested">
+            <li>Nested object one</li>
+            <li>Nested object two</li>
+            <li value="10">Nested object three with a <code>value</code> of 10</li>
+            <li>Nested object four (note - we incremented from the last value!</li>
+          </ol>
+        </li>
+      </ol>
+    </article>
+    <article id="element-specific">
+      <p>The following lists demonstrate the three <code>&lt;ol&gt;</code> specific attributes, <code>reversed</code>, <code>start</code>, and <code>type</code>.</p>
+      <article id="reversed">
+        <p>The following lists are the same, but the second has the <code>reversed</code> attribute. Note that the elements are in
+        the same order, and only the numbering is reversed.</p> 
+        <ol>
+          <li>List item one</li>
+          <li>List item two</li>
+          <li>List item three</li>
+          <li>List item four</li>
+        </ol>
+      
+        <ol reversed>
+          <li>List item one</li>
+          <li>List item two</li>
+          <li>List item three</li>
+          <li>List item four</li>
+        </ol>
+      </article>
+      
+      <article id="start">
+        <p>The following list has a <code>start</code> value of 3. The default value is 1.</p>
+        <ol start="3">
+          <li>List item one</li>
+          <li>List item two</li>
+          <li>List item three</li>
+          <li>List item four</li>
+        </ol>
+      </article>
+        
+      <article id="type">
+        <p style="grid-area: p;">The <code>type</code> attribute sets the number style for the list. The permitted values are <code>a</code> for lowercase letters, <code>A</code> for uppercase letters, <code>i</code> for lowercase Roman numerals,
+        <code>I</code> for uppercase Roman numerals, and <code>1</code> for numbers. Unless the <code>type</code> matters to the structure of the document, the CSS
+          property <code>list-style-type</code> should be used instead. </p>
+        <ol type="a" style="grid-area: ol1"> Using <code>type="a"</code>
+          <li>List item one</li>
+          <li>List item two</li>
+        </ol>
+        <ol type="A" style="grid-area: ol2"> Using <code>type="A"</code>
+          <li>List item one</li>
+          <li>List item two</li>
+        </ol>
+        <ol type="i" style="grid-area: ol3"> Using <code>type="i"</code>
+          <li>List item one</li>
+          <li>List item two</li>
+        </ol>
+        <ol type="I" style="grid-area: ol4"> Using <code>type="I"</code>
+          <li>List item one</li>
+          <li>List item two</li>
+        </ol>
+      </article>
+    </article>
+  </section>
+  <section id="css-tricks">
+    <h2>CSS Tricks</h2>
+    <p>Most of the styling with an ordered list comes from the styling of the markers used. Aside from the ability to change the marker using the <code>type</code> attribute or <code>list-style-type</code> property, you can use the CSS <code>::before</code> selector with a background color and radius to create more custom markers. Use <code>list-style: none</code> on the <code>&lt;ol&gt;</code>, then for each <code>&lt;li&gt;</code> you can use <code>li::before { content: x }</code> for any x marker - this could be a special character, an image, or an emoji!</p>
+    <ol id="colored-numbers" class="css-example1">
+      <li>Preheat oven to 425&deg;F</li>
+      <li>Mix all the ingredients
+        <ol class="css-example1">
+          <li>Dump ingredients into bowl</li>
+          <li>Stir with whisk</li>
+        </ol>
+      </li>
+      <li>Dump mixture into a greased pan</li>
+      <li>Bake for 40 minutes</li>
+      <li>Take out and let cool 30 minutes</li>
+    </ol>
+    <p>Above, the table of contents example did not have "outline style" nested markers. To accomplish nesting markers, create a counter (<code>count</code>) that resets for each ordered list element (here, we used a class selector). Then, for each <code>&lt;li&gt;</code>, increment the counter. Finally, use the <code>::before</code> selector to set the marker with <code>content: counters(count, ".") ". ";</code></p>
+    <ol class="outline">
+      <li>List Item</li>
+      <li>List Item</li>
+      <li>List Item
+        <ol class="outline">
+          <li>List Item</li>
+          <li>List Item
+            <ol class="outline">
+              <li>List Item</li>
+              <li>List Item</li>
+              <li>List Item</li>
+            </ol>
+          </li>
+          <li>List Item</li>
+        </ol>
+      </li>
+      <li>List Item
+        <ol class="outline">
+          <li>List Item</li>
+          <li>List Item</li>
+          <li>List Item</li>
+        </ol>
+      </li>
+    </ol>
+  </section>
+</body>
+
+</html>

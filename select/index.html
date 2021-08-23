@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&lt;select&gt;</title>
+
+  <!-- Google Fonts - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+  <header>
+    <h1>Select</h1>
+  </header>
+
+  <section id="syntax">
+    <h2>Syntax</h2>
+    <p>According to <a
+        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select">developer.mozilla.org</a>,
+      the <code>&lt;select&gt;</code> element represents a control that provides a menu of
+      options. This allows the user to easily give textual input without you
+      having to format the response or control for responses outside the scope of the
+      question. To use the <code>&lt;select&gt;</code> element, it must be used in
+      conjunction with the <code>&lt;option&gt;</code> element. To create choices to
+      select from in the <code>&lt;select&gt;</code> element dropdown menu, you simply add
+      an <code>&lt;option&gt;</code> element as a child for each option. Here is an
+      example:
+    </p>
+
+    <code class="code-example">
+  <pre>&lt;select&gt;
+  &lt;option value="vanilla"&gt;Vanilla&lt;/option&gt;
+  &lt;option value="chocolate"&gt;Chocolate&lt;/option&gt;
+  &lt;option value="strawberry"&gt;Strawberry&lt;/option&gt;
+  &lt;option value="coffee"&gt;Coffee&lt;/option&gt;
+&lt;/select&gt;</pre>
+  </code>
+
+    <p>The <code>&lt;select&gt;</code> element also has many helpful attributes such as
+      the
+      <code>multiple</code> attribute which lets users select more than one option at
+      once, and the <code>size</code> attribute which is used to specify how many options
+      should be shown at once. Since it the most common use of the
+      <code>&lt;select&gt;</code> element is in a
+      form,
+      it is generally good practice to add a <code>name</code> and <code>id</code>
+      attribute
+      so a label can be attached and the data can be passed back upon form submission.</p>
+
+    <p>One more common element you can use inside
+      <code>&lt;select&gt;</code> is the
+      <code>&lt;optgroup&gt;</code> element. This allows you to group similar
+      <code>&lt;option&gt;</code> elements together. Here's an example of what that might
+      look like</p>
+
+    <code class="code-example">
+  <pre>&lt;select&gt;
+  &lt;optgroup label="Ice Cream Flavors"&gt;
+    &lt;option value="vanilla"&gt;Vanilla&lt;/option&gt;
+    &lt;option value="chocolate"&gt;Chocolate&lt;/option&gt;
+    &lt;option value="strawberry"&gt;Strawberry&lt;/option&gt;
+    &lt;option value="coffee"&gt;Coffee&lt;/option&gt;
+  &lt;/optgroup&gt;
+  &lt;optgroup label="Sorbet Flavors"&gt;
+    &lt;option value="mango"&gt;Mango&lt;/option&gt;
+    &lt;option value="peach"&gt;Peach&lt;/option&gt;
+    &lt;option value="raspberry"&gt;Raspberry&lt;/option&gt;
+  &lt;/optgroup&gt;
+&lt;/select&gt;</pre>
+  </code>
+  </section>
+
+  <section id="applications">
+    <h2>Applications</h2>
+
+    <p>As was said above, the most common application for the <code>&lt;select&gt;</code>
+      element is to gather user input for a question that requires a textual answer. A
+      complete form and form submission for the <code>&lt;select&gt;</code> element might
+      look
+      like this</p>
+
+    <code class="code-example">
+  <pre>&lt;form action="https://httpbin.org/post" method="POST"&gt;
+  &lt;label for="favAnimal"&gt;Choose your favorite animal:&lt;/label&gt;
+  &lt;br&gt;
+  &lt;select name="favAnimal" id="favAnimal"&gt;
+    &lt;option value="tiger"&gt;Tiger&lt;/option&gt;
+    &lt;option value="lion"&gt;Lion&lt;/option&gt;
+    &lt;option value="zebra"&gt;Zebra&lt;/option&gt;
+    &lt;option value="hippo"&gt;Hippo&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;br&gt;
+  &lt;input type="submit"&gt;
+&lt;/form&gt;
+
+
+How the above HTML renders:
+
+<form action="https://httpbin.org/post" method="POST">
+<label for="favAnimal">Choose your favorite animal:</label>
+<select name="favAnimal" id="favAnimal">
+  <option value="tiger">Tiger</option>
+  <option value="lion">Lion</option>
+  <option value="zebra">Zebra</option>
+  <option value="hippo">Hippo</option>
+</select>
+<input type="submit">
+</form>
+</pre></code>
+    <br>
+    <code class="code-example">
+    <pre>This is what a typical form submission might look like when the server receives it (if Zebra is selected from the above element)
+      
+{
+  "args": {}, 
+  "data": "", 
+  "files": {}, 
+  <span style="background-color:yellow">"form": {
+    "favAnimal": "zebra"
+  }</span>,
+  "headers": {
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9", 
+    "Accept-Encoding": "gzip, deflate, br", 
+    "Accept-Language": "en-US,en;q=0.9", 
+    "Cache-Control": "max-age=0", 
+    "Content-Length": "15", 
+    "Content-Type": "application/x-www-form-urlencoded", 
+    "Host": "httpbin.org", 
+    "Origin": "http://127.0.0.1:5500", 
+    "Referer": "http://127.0.0.1:5500/test.html", 
+    "Sec-Fetch-Dest": "document", 
+    "Sec-Fetch-Mode": "navigate", 
+    "Sec-Fetch-Site": "cross-site", 
+    "Sec-Fetch-User": "?1", 
+    "Upgrade-Insecure-Requests": "1", 
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36 Edg/83.0.478.64", 
+    "X-Amzn-Trace-Id": "Root=1-5f10b8db-c13eb992f0f735544f646060"
+  }, 
+  "json": null, 
+  "origin": "75.80.51.100", 
+  "url": "https://httpbin.org/post"
+}</pre>
+  </code>
+  </section>
+  <section id="interactivity">
+    <h2>Interactivity</h2>
+    <p>Since the <code>&lt;select&gt;</code> element is a <code>&lt;form&gt;</code>
+      element, it is one of the few inherently interactive HTML elements. There are a few
+      attributes that the <code>&lt;select&gt;</code> element has which you can use to add
+      more interactivity. The <code>size</code> attribute allows you to determine
+      how many choices are shown on screen at the same time. This is particularly helpful
+      if you have a small number of selections as it saves the user a click. By default
+      this value is 1 unless the multiple attribute is higher than 1, in which case it
+      defaults to 4. The <code>&lt;select&gt;</code> element only behaves as a drop down
+      menu when it has a value less than 2.</p>
+    <p>As mentioned above, there is also the <code>multiple</code> attribute. This lets
+      you determine how many <code>&lt;option&gt;</code>s the user is allowed to select.
+      By default this value is 1.</p>
+    <p>Below is an example showing <code>size</code> values ranging from 1 to 6 for the
+      same list. A <code>mutliple</code> value of 2 has been applied to each list as well.
+    </p>
+    <div class="interactive-example">
+      <select name="favAnimal" id="favAnimal" multiple=2 size=1>
+        <option value="tiger">Tiger</option>
+        <option value="lion">Lion</option>
+        <option value="zebra">Zebra</option>
+        <option value="hippo">Hippo</option>
+        <option value="hippo">Horse</option>
+        <option value="hippo">Dog</option>
+      </select>
+      <select name="favAnimal" id="favAnimal" multiple=2 size=2>
+        <option value="tiger">Tiger</option>
+        <option value="lion">Lion</option>
+        <option value="zebra">Zebra</option>
+        <option value="hippo">Hippo</option>
+        <option value="hippo">Horse</option>
+        <option value="hippo">Dog</option>
+      </select>
+      <select name="favAnimal" id="favAnimal" multiple=2 size=3>
+        <option value="tiger">Tiger</option>
+        <option value="lion">Lion</option>
+        <option value="zebra">Zebra</option>
+        <option value="hippo">Hippo</option>
+        <option value="hippo">Horse</option>
+        <option value="hippo">Dog</option>
+      </select>
+      <select name="favAnimal" id="favAnimal" multiple=2 size=4>
+        <option value="tiger">Tiger</option>
+        <option value="lion">Lion</option>
+        <option value="zebra">Zebra</option>
+        <option value="hippo">Hippo</option>
+        <option value="hippo">Horse</option>
+        <option value="hippo">Dog</option>
+      </select>
+      <select name="favAnimal" id="favAnimal" multiple=2 size=5>
+        <option value="tiger">Tiger</option>
+        <option value="lion">Lion</option>
+        <option value="zebra">Zebra</option>
+        <option value="hippo">Hippo</option>
+        <option value="hippo">Horse</option>
+        <option value="hippo">Dog</option>
+      </select>
+      <select name="favAnimal" id="favAnimal" multiple=2 size=6>
+        <option value="tiger">Tiger</option>
+        <option value="lion">Lion</option>
+        <option value="zebra">Zebra</option>
+        <option value="hippo">Hippo</option>
+        <option value="hippo">Horse</option>
+        <option value="hippo">Dog</option>
+      </select>
+    </div>
+  </section>
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+    The <code>&lt;select&gt;</code> element can be used entirely with either the mouse or
+    the keyboard.
+    <p><strong>With a Mouse:</strong> It's fairly straight forward with a mouse. You click
+      to open and click to select if only a single choice is allowed. If multiple choices
+      are allowed, then you can either hold CTRL while clicking to select another choice
+      or hold SHIFT while clicking to select all of the choices between your first and
+      newest selection. When the list has a <code>multiple</code> value greater than 1, to
+      deselect an option, simply hold CTRL when clicking the option you have previously
+      selected.</p>
+    <p><strong>With a Keyboard:</strong> The controls are remarkably similar to the mouse
+      with only a slight variation. Once you have tabbed over to select the
+      <code>&lt;select&gt;</code> element with the TAB key, you simply use the arrow keys
+      up or down to select the <code>&lt;option&gt;</code> you would like. Similarly, you
+      can use the CTRL and SHIFT keys alongside the arrows keys
+      if multiple selections are allowed. The space key is used to select the option.</p>
+  </section>
+  <section id="internationalization">
+    <h2>Internationalization</h2>
+    <p>As far as internationalization goes for the <code>&lt;select&gt;</code> element, it
+      doesn't have anything extraordinary going on outside of the global attributes. The
+      main global attributes it (and every other element) has for internationlization are
+      <code>dir</code> and <code>lang</code>. The attribute <code>dir</code> takes in the
+      value of either <code>ltr</code> or <code>rtl</code> meaning "Left to Right" or
+      "Right to Left". As the values imply, this indicates the direction the text is to be
+      read.</p>
+    <p>The <code>lang</code> attribute simply tells the computer what language the
+      <code>&lt;select&gt;</code> element is so it does not have to guess. This is helpful
+      for translation services as well as SEO.</p>
+  </section>
+  <section id="misuse">
+    <h2>Misuse</h2>
+    <p>It is not that common anymore, but in many older web designs the
+      <code>&lt;select&gt;</code> element was used as a navigation menu, with each
+      <code>&lt;option&gt;</code> being a different page. When the user selected an
+      <code>&lt;option&gt;</code>, it acted as a link to direct to the new page. This use
+      case has two major faults: First, it does not semantically make sense. Although you
+      can wrap it in a <code>&lt;nav&gt;</code> element, the fact remains that the
+      <code>&lt;select&gt;</code> element is behaving as an <code>&lt;a&gt;</code>
+      element. If
+      the intended affect is for the element to behave like an <code>&lt;a&gt;</code>
+      element, then
+      an <code>&lt;a&gt;</code> element should be used. The second fault is that this
+      method
+      requires JavaScript to function. Without JavaScript, you would have no way of
+      linking to
+      any other page. Not only would this be terrible for SEO since bots would not be able
+      to
+      traverse your site, it makes your website brittle since it does not have a fallback.
+    </p>
+  </section>
+  <section id="references">
+    <h2>References</h2>
+    <ul>
+      <li><a href="https://www.w3.org/TR/html52/sec-forms.html#the-select-element"
+          target="_blank">The
+          World Wide Web Consortium (w3.org - One of the HTML specs)</a>
+      </li>
+      <li><a href="https://html.spec.whatwg.org/multipage/form-elements.html#the-select-element" target="_blank">The
+          Web Hypertext Application Technology Working Group (WHATWG - The living HTML
+          spec)</a>
+      </li>
+      <li><a href="http://www.htmlref.com/reference/appa/tag_select.htm"
+          target="_blank">The
+          The Complete HTML & XHTML reference, fourth edition</a>
+      </li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select"
+          target="_blank">Mozilla
+          Developer Network</a>
+      </li>
+      <li><a href="https://www.w3schools.com/tags/tag_select.asp"
+          target="_blank">w3schools.com</a>
+      </li>
+      <li><a href="https://htmlreference.io/element/select/"
+          target="_blank">htmlreference.io</a>
+      </li>
+    </ul>
+  </section>
+</body>
+
+</html>

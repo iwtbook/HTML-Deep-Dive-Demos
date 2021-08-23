@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&lt;hr&gt;</title>
+
+  <!-- Google Fonts - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+  <header>
+    <h1>hr</h1>
+  </header>
+
+  <section id="syntax">
+    <h2>General Use & Syntax</h2>
+    <p>According to the current <a href="https://html.spec.whatwg.org/multipage/grouping-content.html#the-hr-element">HTML Standard</a>, the <code>&lt;hr&gt;</code> element represents a paragraph-level thematic break, e.g. a scene change in a story, or a transition to another topic within a section of a reference book. While it used to be known as the Horizontal Rule element (thus why it is <code>&lt;hr&gt;</code>), it is now referred to as the Thematic Break element to dissuade developers from using it for stylistic purposes (more on this in the Misuse section below). Below is an example of one being used in context:</p>
+
+    <code class="code-example-pre" style="margin-bottom: 8px;">
+<pre>&lt;h1&gt;Types of Rocks&lt;/h1&gt;
+&lt;p&gt;In this section we will be covering different kinds of rocks and how they're formed.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;Igneous rocks&lt;/h2&gt;
+&lt;p&gt;...&lt;/p&gt;
+</pre>
+    </code>
+  </section>
+  <section id="misuse">
+    <h2>Misuse</h2>
+    <p>As was stated above, the <code>&lt;hr&gt;</code> element used to be referred to as the "Horizontal Rule" element in previous versions of HTML. Due to this naming, the element was often used for purely stylistic purposes without any semantic meaning. With this element, the <code>&lt;font&gt;</code> element, and a few others, the line blurred between what technology was used for styling and what technology was used for markup. When HTML5 was being developed, it was decided that a clean line needed to be formed, so the <code>&lt;hr&gt;</code> element was given a completely semantic meaning of as a "Thematic Break", distancing itself from its stylistic past.</p>
+
+    <p>Since the <code>&lt;hr&gt;</code> element still renders as think horizontal gray line on the screen, it is still common for developers to confuse it for a styling tool. If you need a way to create a thin horizontal line across the screen without any semantic meaning, below is an example of one way it could be achieved using CSS:</p>
+
+    <code class="code-example-pre">
+<pre>HTML:
+&lt;div class="horizontalRule"&gt;&lt;/div&gt;
+
+CSS:
+.horizontalRule {
+  background-color: lightgray;
+  height: 2px;
+  margin: 0 auto;
+  width: 90vw;
+}
+</pre>
+    </code>
+
+    <p>Here's how it renders:</p>
+
+    <div style="background-color:lightgray;height: 2px;margin: 20px auto;width: 90vw;"></div>
+  </section>
+  <section id="trivia">
+    <h2>Trivia</h2>
+    <p>Similar to the <code>&lt;br&gt;</code> element, the <code>&lt;hr&gt;</code> element is an empty element, meaning that since there's no reason to have content inside of it, it doesn't take a closing tag. Often times you might see <code>&lt;br&gt;</code> and <code>&lt;hr&gt;</code> written instead as <code>&lt;br/&gt;</code> or <code>&lt;hr/&gt;</code>. The reason for this goes all the way back to XML and XHTML, where these elements were apart of a group of elements referred to as "self-closing tags". The reason being that if you were unfamiliar with which elements were empty elements, you could at a glance determine which were which. This might prevent some slight worry if you didn't see a closing tag for an element. In XML and XHTML these self-closing tags were required to have that trailing forward slash, so a lot of developers got into the habit of always including them, even after XML and XHTML faded away. Nowadays those two markup languages aren't nearly as ubiquitous, but the tradition of including them has stuck around as a remnant of those days (even though they are no longer necessary).</p>
+  </section>
+  <section id="references">
+    <h2>References</h2>
+    <ul>
+      <li><a href="https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element"
+          target="_blank">The
+          World Wide Web Consortium (w3.org - One of the HTML specs)</a>
+      </li>
+      <li><a href="https://html.spec.whatwg.org/multipage/grouping-content.html#the-hr-element" target="_blank">The
+          Web Hypertext Application Technology Working Group (WHATWG - The living HTML
+          spec)</a>
+      </li>
+      <li><a href="http://www.htmlref.com/reference/appa/tag_img.htm"
+          target="_blank">The
+          The Complete HTML & XHTML reference, fourth edition</a>
+      </li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"
+          target="_blank">Mozilla
+          Developer Network</a>
+      </li>
+      <li><a href="https://www.w3schools.com/tags/tag_img.asp"
+          target="_blank">w3schools.com</a>
+      </li>
+      <li><a href="https://htmlreference.io/element/img/"
+          target="_blank">htmlreference.io</a>
+      </li>
+      <li><a href="https://caniuse.com/"
+          target="_blank">caniuse.com</a>
+      </li>
+    </ul>
+  </section>
+</body>
+
+</html>

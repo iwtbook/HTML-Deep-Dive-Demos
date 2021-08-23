@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&lt;img&gt;</title>
+
+  <!-- Google Fonts - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+  <header>
+    <h1>Img</h1>
+  </header>
+
+  <section id="syntax">
+    <h2>General Syntax & Usage</h2>
+    <p>The <code>&lt;img&gt;</code> element allows for image content to be embeded into a web page. The only required attribute for this element is the <code>src</code> attribute which takes a valid URL/Path to the location of the image to be displayed. Although the <code>src</code> attribute is technically the only required attribute, it is highly recommended to include the <code>alt</code> attribute as well. This attribute takes in a description of the image and serves as both the fallback text for when the image cannot load and something to help screen readers read out to the visually imparied. Here's a small example:</p>
+
+    <code class="code-example">&lt;img src="images/forth-wanderers.jpg" alt="Forth Wanderers self titled album cover"&gt;</code>
+
+    <p>Which then renders as</p>
+
+    <img src="images/forth-wanderers.jpg" alt="Forth Wanderers self titled album cover">
+  </section>
+  <section id="performance">
+    <h2>Performance</h2>
+    <h3>Serving the Right Size</h3>
+
+    <p>Built into the <code>&lt;img&gt;</code> element is also the <code>srcset</code> attribute which allows you to serve different images (usually the same image with different sizes) based on certain conditions. A common use case is to serve smaller images for smaller width screens, generally good practice to do for mobile devices. To use it, you simply specify a URL/path for the alternate image, followed by the exact width of the image in pixels (using w as the unit), and any other alternates are comma separated. The browser will determine on its own which image is the best one to load. When you include the <code>srcset</code> attribute, it's usually best pratice to have your <code>src</code> attribute be your smallest image size, and your alternative larger versions included in your <code>srcset</code> attribute. Here's an example:</p>
+
+    <code class="code-example">&lt;img src="images/forth-wanderers-small.jpg" srcset="images/forthwanderers-med.jpg 600w, images/forthwanderers.jpg 1200w" alt="Forth Wanderers self titled album cover"&gt;</code>
+
+    <p>Which then renders as (image loaded will depend on your screen size)</p>
+
+    <img src="images/forth-wanderers-small.jpg" srcset="images/forth-wanderers-med.jpg 600w, images/forth-wanderers-large.jpg 1200w" alt="Forth Wanderers self titled album cover" id="srcsetImg" style="display:block;margin-bottom:10px;">
+
+    <h3>Image Unable to Load</h3>
+
+    <p>If the image was unable to load (such as a bad internet connection, a broken link, a server hiccup, etc) this is how it would display</p>
+
+    <img src="" alt="Forth Wanderers self titled album cover">
+
+    <p>Notice here how the image dimensions were not retained, only that of the text. If you had a layout on your website that was dependent on your image being a specific size, this would potentially break that design. Alongside that, if your image were to be slow at loading, it would cause a jarring layout shift as it popped into the page. Luckily there is a remedy for this, the <code>height</code> and <code>width</code> attributes. With these, the image will retain its dimensions wether the image is loaded or not, as long as the image is a block element (by default img elements are inline). Here is that same photo, but with those attributes specified (and a border applied for visual reference).</p>
+
+    <code class="code-example">&lt;img src="" alt="Forth Wanderers self titled album cover" height=400 width=400&gt;</code>
+    
+    <img src="" alt="Forth Wanderers self titled album cover" height=400 width=400 style="display:block;margin-top:20px;border:1px solid black;">
+
+    <h3>Lazy Loading</h3>
+    <p>Normally when you load a page with a load of <code>&lt;img&gt;</code> elements they all get fetched at once which not only is a massive hit to page performance, but can waste a lot of data if those images are never seen. Luckily there is a simple fix for this (for some browsers). The attribute <code>loading</code> attribute takes either the value <code>eager</code> or <code>lazy</code>. <code>Eager</code> is the default, where the images are all fetched immediately upon page load. The value <code>lazy</code> however will wait until the image approaches the viewport so that it only gets loaded when it is likely to be seen on screen (It's fetched slightly before it's on screen so it's not noticable to the user). Unfortunately the browser support for this feature isn't quite universal as you can see below, but there's no downside to putting the attribute on there for the browsers that support it.</p>
+
+    <figure>
+      <img src="images/caniuse-loading.PNG" alt="Support for lazy loading attribute showing that IE 11 and Safari don't support it">
+      <figcaption>Support for loading="lazy"</figcaption>
+    </figure>
+    
+    <h4>Lazy Loading Example</h4>
+    <code class="code-example">&lt;img src="images/charly-bliss.jpg" alt="Album cover for Guppy by Charly Bliss" loading="lazy"&gt;</code>
+    <img src="images/charly-bliss.jpg" alt="Album cover for Guppy by Charly Bliss" loading="lazy" style="display:block;margin-top: 20px;">
+
+    <p>This image was lazy loaded!</p>
+
+  </section>
+  <section id="interactivity">
+    <h2>Interactivity</h2>
+    <h3>Using an Image as a Link</h3>
+    <p>You've probably some across images that act as links before, such as a logo in the top left of a website that links back to the home page. This is fairly easy to implement, as you just need to wrap the <code>&lt;img&gt;</code> element in an <code>&lt;a&gt;</code> element. When having an <code>&lt;img&gt;</code> element as a link though, it is often helpful to use the <code>title</code> attribute so as to give the user a hint to where the page links.</p>
+    <code class="code-example-pre" style="margin-bottom:20px;">
+      <pre>&lt;a href="https://google.com" title="Google"&gt;
+  &lt;img src="images/charly-bliss.jpg" alt="Album cover for Guppy by Charly Bliss"&gt;
+&lt;/a&gt;</pre>
+    </code>
+    <br>
+    <a href="https://google.com">
+      <img src="images/charly-bliss.jpg" alt="Album cover for Guppy by Charly Bliss" title="Google">
+    </a>
+
+    <h3>Mapping Shapes of an Image as a Link</h3>
+    <p>Sometimes you might want to only make part of an image a link instead of the whole image, and when that's the case the element <code>&lt;map&gt;</code> comes in handy. In the example below I've added a map to the image so that only the are clickable areas. Doing this manually isn't too bad, but for this demonstration I used the tool <a href="https://www.image-map.net/">image-map.net</a> to help create it. Built in there are only three types of shapes: Circles, Rectangles, and Polygons. Since there is no oval shape, I had to approximate it with three circles.</p>
+
+    <code class="code-example-pre" style="margin-bottom: 20px;">
+      <pre>&lt;img src="images/charly-bliss.jpg" alt="Album cover for Guppy by Charly Bliss" usemap="#image-map"&gt;
+&lt;map name="image-map"&gt;
+  &lt;area alt="Circle" href="https://google.com" coords="100,104,70" shape="circle"&gt;
+  &lt;area alt="Triangle" href="https://google.com" coords="107,199,38,323,178,322" shape="poly"&gt;
+  &lt;area alt="Diamond" href="https://google.com" coords="281,484,220,403,280,326,341,406" shape="poly"&gt;
+  &lt;area alt="Square" href="https://google.com" coords="53,355,173,475" shape="rect"&gt;
+  &lt;area alt="Rectangle" href="https://google.com" coords="216,196,365,301" shape="rect"&gt;
+  &lt;area alt="Center of Oval" href="https://google.com" coords="287,97,52" shape="circle"&gt;
+  &lt;area alt="Top of Oval" href="https://google.com" coords="286,62,43" shape="circle"&gt;
+  &lt;area alt="Bottom of Oval" href="https://google.com" coords="286,125,43" shape="circle"&gt;
+&lt;/map&gt;</pre>
+    </code>
+    <br>
+    <img src="images/shapes.png" alt="Image map of various shapes" usemap="#image-map">
+    <map name="image-map">
+      <area alt="Circle" href="https://google.com" coords="100,104,70" shape="circle">
+      <area alt="Triangle" href="https://google.com" coords="107,199,38,323,178,322" shape="poly">
+      <area alt="Diamond" href="https://google.com" coords="281,484,220,403,280,326,341,406" shape="poly">
+      <area alt="Square" href="https://google.com" coords="53,355,173,475" shape="rect">
+      <area alt="Rectangle" href="https://google.com" coords="216,196,365,301" shape="rect">
+      <area alt="Center of Oval" href="https://google.com" coords="287,97,52" shape="circle">
+      <area alt="Top of Oval" href="https://google.com" coords="286,62,43" shape="circle">
+      <area alt="Bottom of Oval" href="https://google.com" coords="286,125,43" shape="circle">
+    </map>
+
+  </section>
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+    <p>As shown in the General Syntax & Usage section, the <code>alt</code> attribute is critical when using the <code>&lt;img&gt;</code> element. Without the <code>alt</code> attribute, the computer parsing the HTML would have no way of knowing what is in the picture. Many screen readers that the visually impaired use rely on these alt attributes to read out what is inside the picture. Without it, they are left with only the file name which often isn't descriptive enough, if at all. Secondly, website crawling bots such as Google's have no idea what are in your photos either, which hurts your accessibility score and in turn your search engine ranking. Finally, as demonstrated above, it acts as fallback text when the image can't be loaded. Without this fallback text the user would have no idea what the image is supposed to be.</p>
+  </section>
+  <section id="misuse">
+    <h2>Misuse</h2>
+    
+    <h3>Using <code>&lt;img&gt;</code> to Layout a Webpage</h3>
+    <p>Let's say you wanted text to wrap around a specific shape, like a square, but weren't terribly familiar with CSS, how would you accomplish this? The right way would be to learn enough CSS to achieve this affect, 
+      <img alt="For stylistic purposes only" src="images/transparent.gif" style="float:left;height:50px;border:1px solid black;margin-top:10px;"> but it might cross your mind to use a transparent image to create this affect. I have done this with the square to the left of this text (I have added a black border so it is visible). Of course, this would be a misuse of the <code>&lt;img&gt;</code> tag. The purpose of the <code>&lt;img&gt;</code> is to embed digital content on a page, where as this is a purely stylistic purpose and adds no content to the page. On top of this, it's a slight performance hit as it fetches the resource when one could simply use CSS.</p>
+
+    <h3>Security Vulnerabilities - Data Collection</h3>
+    <p>The <code>&lt;img&gt;</code> element is an interesting one when it comes to misues since unlike most elements, it inherently involves the network. Behind the scenes all the <code>src</code> attribute really is is a HTTP get request, allowing you to hit any endpoint or fetch any resource (disguised as an image) you like. For example, if the following <code>&lt;img&gt;</code> element was maliciously inserted into an unsuspecting page, it might not be noticed right away.</p>
+
+    <code class="code-example">
+      &lt;img src="http://somewebsite.com/image.jpg" alt="Rolling hills and tall grass"&gt;
+    </code>
+    
+    <p>While the code above might look innocuous, it could simply be a fake URL endpoint set up to collect data. Below are two iframes: One is to <a href="http://httpbin.org/get">http://httpbin.org/get</a> which mirrors back all of the header information they now have on your browser, including your IP address. The second iframe on the right goes to <a href="https://www.iplocation.net/">https://www.iplocation.net</a> which uses your IP address to determine your location, ISP, and a lot of other information as well.</p>
+
+    <div style="background-color:white;display:inline-block;">
+      <p style="text-align: center;font-size:24px;margin:5px 0">httpbin.org/get</p>
+      <iframe style="display:block;" src="http://httpbin.org/get" height=300 width=600></iframe>
+    </div>
+
+    <div style="background-color:white;display:inline-block;">
+      <p style="text-align: center;font-size:24px;margin:5px 0">iplocation.net</p>
+      <iframe style="display:block;" src="https://www.iplocation.net/" height=300 width=600></iframe>
+    </div>
+
+    <h3>Security Vulnerabilities - Cross Site Scripting (XSS)</h3>
+
+    <p>There are many image types that are supported in browsers, one popular one being <code>SVG</code>. <code>SVG</code> stands for Scalable Vector Graphics, and it allows developers to include vector graphics, such as logos, in their website. Unfortunately for web security, the SVG format supports the <code>&lt;script&gt;</code> tag. Due to this, one should <i>never</i> link to an external SVG file since it would be trivial to include a malicious script inside of one without you knowing. GIF images have also been known to be able to store JavaScript within them, so one should be weary when using them as well.</p>
+    <p>It is also important to note that an external resource you are pointing to is entirely out of your control. The host of said resource could at any point enable CORS to prevent you from accessing their file from your current domain, swap out the image from that domain with any image they please, or even change the resource that domain points to altogether regardless of whether it is an image.</p>
+  </section>
+
+  <section id="references">
+    <h2>References</h2>
+    <ul>
+      <li><a href="https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element"
+          target="_blank">The
+          World Wide Web Consortium (w3.org - One of the HTML specs)</a>
+      </li>
+      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element" target="_blank">The
+          Web Hypertext Application Technology Working Group (WHATWG - The living HTML
+          spec)</a>
+      </li>
+      <li><a href="http://www.htmlref.com/reference/appa/tag_img.htm"
+          target="_blank">The
+          The Complete HTML & XHTML reference, fourth edition</a>
+      </li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"
+          target="_blank">Mozilla
+          Developer Network</a>
+      </li>
+      <li><a href="https://www.w3schools.com/tags/tag_img.asp"
+          target="_blank">w3schools.com</a>
+      </li>
+      <li><a href="https://htmlreference.io/element/img/"
+          target="_blank">htmlreference.io</a>
+      </li>
+      <li><a href="https://caniuse.com/"
+          target="_blank">caniuse.com</a>
+      </li>
+    </ul>
+  </section>
+</body>
+
+</html>
